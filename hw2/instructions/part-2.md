@@ -35,7 +35,7 @@ gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>":~/cs224v-fall2022/hw2/<"YOUR_D
 
 ## Test canonical forms
 
-An utterance-ThingTalk program pair sampler tool is available to help you evaluate your canonical forms. This tool is capable of generating samples of single-turn commands and ThingTalk programs with projection and filter properties. Single-turn commands are the natural language commands that your virtual assistant will attempt to generate based on the canonical forms you defined in the manifest file. ThingTalk programs can help give you a sense of what query operations will be executed relative to the generated natural language command.
+An utterance-Thingtalk code pair sampler tool is available to help you evaluate your canonical forms. This tool is capable of generating samples of single-turn commands and Thingtalk codes with projection and filter properties. Single-turn commands are the natural language commands that Genie will attempt to generate based on the canonical forms you defined in the manifest file. Thingtalk codes can help give you a sense of what query operations will be executed relative to the generated natural language command.
 
 The resulting code pairs are saved to a tsv file where each row contains the `id`, `command utterance`, and `ThingTalk program` for each example.
 
@@ -52,7 +52,7 @@ Parameters:
 --device        Your domain name
 ```
 
-For more testing, you can read the details in the [Test Natural Language Support
+For full testing details, you can read the [Test Natural Language Support
 ](https://wiki.genie.stanford.edu/en/genie-guide/test-natural-language-support) reference guide.
 
 ## Re-run synthesis and training 
@@ -65,7 +65,7 @@ make clean-synthesis
 make train model=2
 ```
 
-Note that `make train` will automatically rerun `make synthesis`. 
+Note that `make train` will automatically re-run `make synthesis`. 
 By default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will overwrite the model trained in part 1. 
 
 ## Evaluate 
@@ -75,10 +75,10 @@ make evaluate
 ```
 
 After the evaluation finishes, you will now have `./<DOMAIN>/eval/2.results` and `./<DOMAIN>/eval/2.debug`.
-How is your accuracy? Is it better than model 1? 
+Now, how is your accuracy? Is it better than model 1? 
 
 ## Compare model 1 and 2 
-Follow the same instruction in part 1 to start the almond server (set `--nlu_model 2` when starting the nlu server). Try the same commands you tested in part 1. Does the model perform better now? 
+Follow the same instruction in part 1 to start the Genie server (set `--nlu_model 2` when starting the nlu server). Try the same commands you tested in part 1. Does the model perform better now? 
 
 Pick five examples from the eval set that are parsed correctly in both part 1 and 2, i.e., the ones in `eval/annotated.tsv` but not in `eval/1.debug` and `eval/2.debug`.
 Try to paraphrase them, and test them on both model 1 and model 2. How do they perform? Which one is more robust?  
@@ -92,9 +92,10 @@ You can add more annotated data to your training and evaluation datasets by:
     <center><img src="img/genie-ui-screen.png" width="600"></center>
 2. Inspecting or downloading the log file to the local directory
     <center><img src="img/genie-ui-download-screen.png" width="600"></center>
-3. Copying the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
+3. Editing the Thingtalk code if there is a mistake and save the file
+4. Copying the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
     <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
-4. Pasting the code into your training and evaluation datasets (`annotation.txt`) in the following format. The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
+5. Pasting and formatting the code in your training set (`train.tsv`). For example:
     ```text
     ====
     # manual/001
@@ -107,7 +108,6 @@ You can add more annotated data to your training and evaluation datasets by:
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
-5. Editing the Thingtalk code if there is a mistake and save the file
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
