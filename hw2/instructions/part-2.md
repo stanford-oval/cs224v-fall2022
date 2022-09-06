@@ -1,4 +1,4 @@
-# Improve your Wikidata sKill
+# Improve your Wikidata skill
 
 In part 1, we have automatically built a question-answering skill for a Wikidata domain with no manual input. As you might have found out, it does not perform well in real world. 
 However, it provides a good baseline for the developer to collect data and improve upon. 
