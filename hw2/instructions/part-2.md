@@ -90,7 +90,7 @@ For details of the format of `.debug` files, check [instructions/eval-metrics.md
 You can add more annotated data to your training and evaluation datasets by:
 1. Clicking the `Save Conversation Log` button on the top right-hand corner to download the log file
     <center><img src="img/genie-ui-screen.png" width="600"></center>
-2. Copy and paste the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) to your training and evaluation datasets (`annotation.txt`), which should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
+2. Copy and paste the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) to your training and evaluation datasets (`annotation.txt`). The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
     ```bash
     ====
     # manual-01
@@ -98,7 +98,7 @@ You can add more annotated data to your training and evaluation datasets by:
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
     ```
-3. Edit the Thingtalk code if there is a mistake
+3. Edit the Thingtalk code if there is a mistake and save the file
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
