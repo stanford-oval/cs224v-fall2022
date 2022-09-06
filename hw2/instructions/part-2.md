@@ -4,6 +4,17 @@ In part 1, we have automatically built a question-answering skill for a Wikidata
 However, it provides a good baseline for the developer to collect data and improve upon. 
 In this homework, we will add a little manual effort in the form of property annotation to improve the quality of your Wikidata skill. 
 
+## Table of contents
+
+- [Setup](#setup)
+- [Edit the annotations in the manifest](#edit-the-annotations-in-the-manifest)
+- [Test canonical forms](#test-canonical-forms)
+- [Re-run synthesis and training](#re-run-synthesis-and-training)
+- [Evaluate](#evaluate)
+- [Compare model 1 and 2](#compare-model-1-and-2)
+- [Add more training & evaluation data](#add-more-training--evaluation-data)
+- [Submission](#submission)
+
 ## Setup
 
 We will continue running all the experiments under directory `hw2`. Run the following on your GCP instance to get the latest update of this repo:
@@ -35,7 +46,7 @@ gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>":~/cs224v-fall2022/hw2/<"YOUR_D
 
 ## Test canonical forms
 
-An utterance-ThingTalk program pair sampler tool is available to help you evaluate your canonical forms. This tool is capable of generating samples of single-turn commands and ThingTalk programs with projection and filter properties. Single-turn commands are the natural language commands that your virtual assistant will attempt to generate based on the canonical forms you defined in the manifest file. ThingTalk programs can help give you a sense of what query operations will be executed relative to the generated natural language command.
+An utterance-Thingtalk code pair sampler tool is available to help you evaluate your canonical forms. This tool is capable of generating samples of single-turn commands and Thingtalk codes with projection and filter properties. Single-turn commands are the natural language commands that Genie will attempt to generate based on the canonical forms you defined in the manifest file. Thingtalk codes can help give you a sense of what query operations will be executed relative to the generated natural language command.
 
 The resulting code pairs are saved to a tsv file where each row contains the `id`, `command utterance`, and `ThingTalk program` for each example.
 
@@ -52,7 +63,7 @@ Parameters:
 --device        Your domain name
 ```
 
-For more testing, you can read the details in the [Test Natural Language Support
+For full testing details, you can read the [Test Natural Language Support
 ](https://wiki.genie.stanford.edu/en/genie-guide/test-natural-language-support) reference guide.
 
 ## Re-run synthesis and training 
@@ -65,7 +76,7 @@ make clean-synthesis
 make train model=2
 ```
 
-Note that `make train` will automatically rerun `make synthesis`. 
+Note that `make train` will automatically re-run `make synthesis`. 
 By default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will overwrite the model trained in part 1. 
 
 ## Evaluate 
@@ -75,10 +86,10 @@ make evaluate
 ```
 
 After the evaluation finishes, you will now have `./<DOMAIN>/eval/2.results` and `./<DOMAIN>/eval/2.debug`.
-How is your accuracy? Is it better than model 1? 
+Now, how is your accuracy? Is it better than model 1? 
 
 ## Compare model 1 and 2 
-Follow the same instruction in part 1 to start the almond server (set `--nlu_model 2` when starting the nlu server). Try the same commands you tested in part 1. Does the model perform better now? 
+Follow the same instruction in part 1 to start the Genie server (set `--nlu_model 2` when starting the nlu server). Try the same commands you tested in part 1. Does the model perform better now? 
 
 Pick five examples from the eval set that are parsed correctly in both part 1 and 2, i.e., the ones in `eval/annotated.tsv` but not in `eval/1.debug` and `eval/2.debug`.
 Try to paraphrase them, and test them on both model 1 and model 2. How do they perform? Which one is more robust?  
@@ -88,17 +99,26 @@ For details of the format of `.debug` files, check [instructions/eval-metrics.md
 ## Add more training & evaluation data
 
 You can add more annotated data to your training and evaluation datasets by:
-1. Clicking the `Save Conversation Log` button on the top right-hand corner to download the log file
+1. Clicking the `Save Conversation Log` button on the top right-hand corner
     <center><img src="img/genie-ui-screen.png" width="600"></center>
-2. Copy and paste the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) to your training and evaluation datasets (`annotation.txt`). The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
-    ```bash
+2. Inspecting or downloading the log file to the local directory
+    <center><img src="img/genie-ui-download-screen.png" width="600"></center>
+3. Editing the Thingtalk code if there is a mistake and save the file
+4. Copying the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
+    <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
+5. Pasting and formatting the code in your training set (`train.tsv`). For example:
+    ```text
     ====
-    # manual-01
+    # manual/001
     U: What's the weather today in Palo Alto?
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
+    ====
+    # manual/002
+    U: What's the weather today in San Jose?
+    UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
+    UT: @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
-3. Edit the Thingtalk code if there is a mistake and save the file
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.

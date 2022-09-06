@@ -7,13 +7,24 @@ We want all students to have hands-on experience in training a large neural netw
 Since both data synthesis and training are computation-intensive, running each command once may take about 1-2 hours.
 **Please start early and budget your time accordingly!**
 
+## Table of contents
+
+- [Setup](#setup)
+    - [Google Cloud Platform](#google-cloud-platform)
+    - [Install libraries and dependencies](#install-libraries-and-dependencies)
+- [Data synthesis](#data-synthesis)
+- [Train a semantic parser](#train-a-semantic-parser)
+- [Evaluate the semantic parser](#evaluate-the-semantic-parser)
+- [Talk to your model](#talk-to-your-model)
+- [Submission](#submission)
+
 ## Setup
 
 ### Google Cloud Platform
 
 This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
 
-Once you have redeemed your coupon, **follow this detailed [instruction](./google-cloud.md) to setup your VM.**
+Once you have redeemed your coupon, **follow this [instruction](./google-cloud.md) to setup your VM.**
 
 You will be responsible for creating and managing (starting, stopping) the VM instances used by this homework. You will be billed while the instances are running (and you will be responsible for charges beyond the coupon), so make sure you **turn off any VM instance you are not using**.
 
