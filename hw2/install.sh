@@ -15,17 +15,21 @@ install_node() {
 
 install_deps_dnf() {
 	echo "About to install git, make, gettext, g++, pulseaudio, python3"
-	sudo dnf -y install git make gettext gcc-c++ pulseaudio-libs-devel python3-pip python3.8 python3-devel
+	sudo dnf -y install git make gettext gcc-c++ pulseaudio-libs-devel python3-pip python3.8 python3-devel python3-distutils
 }
 
 install_deps_ubuntu() {
 	echo "About to install git, make, gettext, curl, python3"
-	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3.8 python3.8-dev
+	sudo apt -y install software-properties-common
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3.8 python3.8-dev python3.8-distutils
+	alias python=python3.8
+	alias python3=python3.8
 }
 
 install_deps_debian() {
 	echo "About to install git, make, gettext, curl, python3"
-	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3.8 python3.8-dev apt-transport-https 
+	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3.8 python3.8-dev python3-distutils apt-transport-https 
 }
 
 install_deps() {
