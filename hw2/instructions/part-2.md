@@ -92,9 +92,9 @@ You can add more annotated data to your training and evaluation datasets by:
     <center><img src="img/genie-ui-screen.png" width="600"></center>
 2. Inspecting or downloading the log file to the local directory
     <center><img src="img/genie-ui-download-screen.png" width="600"></center>
-3. Copy the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
+3. Copying the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
     <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
-4. Paste the code into your training and evaluation datasets (`annotation.txt`) in the following format. The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
+4. Pasting the code into your training and evaluation datasets (`annotation.txt`) in the following format. The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
     ```text
     ====
     # manual-01
@@ -107,7 +107,7 @@ You can add more annotated data to your training and evaluation datasets by:
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
-5. Edit the Thingtalk code if there is a mistake and save the file
+5. Editing the Thingtalk code if there is a mistake and save the file
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
