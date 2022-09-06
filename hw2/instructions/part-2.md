@@ -97,12 +97,12 @@ You can add more annotated data to your training and evaluation datasets by:
 4. Pasting the code into your training and evaluation datasets (`annotation.txt`) in the following format. The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
     ```text
     ====
-    # manual-01
+    # manual/001
     U: What's the weather today in Palo Alto?
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
     ====
-    # manual-02
+    # manual/002
     U: What's the weather today in San Jose?
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("san jose"));
