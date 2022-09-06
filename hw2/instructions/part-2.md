@@ -4,6 +4,17 @@ In part 1, we have automatically built a question-answering skill for a Wikidata
 However, it provides a good baseline for the developer to collect data and improve upon. 
 In this homework, we will add a little manual effort in the form of property annotation to improve the quality of your Wikidata skill. 
 
+## Table of contents
+
+- [Setup](#setup)
+- [Edit the annotations in the manifest](#edit-the-annotations-in-the-manifest)
+- [Test canonical forms](#test-canonical-forms)
+- [Re-run synthesis and training](#re-run-synthesis-and-training)
+- [Evaluate](#evaluate)
+- [Compare model 1 and 2](#compare-model-1-and-2)
+- [Add more training & evaluation data](#add-more-training--evaluation-data)
+- [Submission](#submission)
+
 ## Setup
 
 We will continue running all the experiments under directory `hw2`. Run the following on your GCP instance to get the latest update of this repo:
