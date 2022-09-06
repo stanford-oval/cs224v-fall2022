@@ -90,7 +90,7 @@ For details of the format of `.debug` files, check [instructions/eval-metrics.md
 You can add more annotated data to your training and evaluation datasets by:
 1. Clicking the `Save Conversation Log` button on the top right-hand corner
     <center><img src="img/genie-ui-screen.png" width="600"></center>
-2. Inspecting or downloading the log file to local
+2. Inspecting or downloading the log file to the local directory
     <center><img src="img/genie-ui-download-screen.png" width="600"></center>
 3. Copy the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
     <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
