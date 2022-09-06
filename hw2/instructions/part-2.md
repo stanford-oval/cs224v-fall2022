@@ -88,17 +88,26 @@ For details of the format of `.debug` files, check [instructions/eval-metrics.md
 ## Add more training & evaluation data
 
 You can add more annotated data to your training and evaluation datasets by:
-1. Clicking the `Save Conversation Log` button on the top right-hand corner to download the log file
+1. Clicking the `Save Conversation Log` button on the top right-hand corner
     <center><img src="img/genie-ui-screen.png" width="600"></center>
-2. Copy and paste the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) to your training and evaluation datasets (`annotation.txt`). The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
-    ```bash
+2. Inspecting or downloading the log file to local
+    <center><img src="img/genie-ui-download-screen.png" width="600"></center>
+3. Copy the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
+    <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
+4. Paste the code into your training and evaluation datasets (`annotation.txt`) in the following format. The files should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
+    ```text
     ====
     # manual-01
     U: What's the weather today in Palo Alto?
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
+    ====
+    # manual-02
+    U: What's the weather today in San Jose?
+    UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
+    UT: @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
-3. Edit the Thingtalk code if there is a mistake and save the file
+5. Edit the Thingtalk code if there is a mistake and save the file
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
