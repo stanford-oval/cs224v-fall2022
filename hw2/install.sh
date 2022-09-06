@@ -23,8 +23,7 @@ install_deps_ubuntu() {
 	sudo apt -y install software-properties-common
 	sudo add-apt-repository ppa:deadsnakes/ppa
 	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3.8 python3.8-dev python3.8-distutils
-	alias python=python3.8
-	alias python3=python3.8
+	sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 10
 }
 
 install_deps_debian() {
