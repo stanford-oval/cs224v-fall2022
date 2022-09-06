@@ -93,7 +93,7 @@ You can add more annotated data to your training and evaluation datasets by:
 2. Copy and paste the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) to your training and evaluation datasets (`annotation.txt`), which should be located at `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/train/annotated.txt` and `~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/eval/dev/annotated.txt`, respectively. For example:
     ```bash
     ====
-    # unique tag
+    # manual-01
     U: What's the weather today in Palo Alto?
     UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
     UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
