@@ -57,15 +57,15 @@ make datadir
 ```
 The synthesis will take about 1 hour, depending on the domain. 
 
-It will generate 
+It will generate:
 - the manifest, `<DOMAIN>/manifest.tt`, containing the schema of the domain, including entities involved, all properties, and their natural language annotations; 
 - a parameter dataset for augmentation, under `<DOMAIN>/parameter-dataset`; 
 - a dataset in `datadir`, containing the training set composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets; and a valid/eval set, converted from CSQA dev set.
 
-Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold ThingTalk program, respectively.
+Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold Thingtalk program, respectively.
 Check the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like.
 
-For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations).
+For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations) guide.
 
 **If you want to re-run this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files that already exist.**
 
