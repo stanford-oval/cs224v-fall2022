@@ -68,7 +68,7 @@ It will create:
 
 Please take a look at the data prepared for you.  
 
-The `manifest.tt` file contains the set of properties in your domain. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations) guide.
+The `manifest.tt` file contains the set of properties in your domain. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in different parts of speech. For more details about the annotation syntax, check out the [Genie Annotation Reference](https://wiki.almond.stanford.edu/en/references/genie-annotation) guide.
 
 Check out the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like. You should not look at the test set, because you are not allowed to tune the training data or the model based on knowledge in the test set. 
 
