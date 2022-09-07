@@ -65,7 +65,7 @@ It will generate:
 Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold Thingtalk program, respectively.
 Check the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like.
 
-For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations) guide.
+For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/en/references/genie-annotation) guide.
 
 **If you want to re-run this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files that already exist.**
 
