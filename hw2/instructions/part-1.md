@@ -1,11 +1,6 @@
 # Build a QA skill for a Wikidata domain with Genie
 
-In this part of homework, you will learn to use Genie and build a question-answering skill for a [Wikidata](https://www.wikidata.org) domain of your choice. 
-
-We want all students to have hands-on experience in training a large neural network.  (No prior knowledge in machine learning is assumed.)  
-
-Since both data synthesis and training are computation-intensive, running each command once may take about 1-2 hours.
-**Please start early and budget your time accordingly!**
+This part of the homework is brings up the system by running a few automated scripts.
 
 ## Table of contents
 
@@ -39,38 +34,50 @@ cd cs224v-fall2022/hw2
 ./install.sh
 ```
 
-Since both the synthesis and training take a long time to finish, we **highly recommend** running everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki) to avoid potential lost of progress due to disconnction. A cheatsheet for use them can be found [here](./multiplexers.md). 
+Since both the synthesis and training take a long time to finish, we **highly recommend** running everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki) to avoid potential lost of progress due to disconnction. A cheatsheet on these topics can be found [here](./multiplexers.md). 
 
-## Data synthesis
-Our first step is to pick a domain and use Genie to synthesize training data for it.
-We will also convert [CSQA dataset](https://amritasaha1812.github.io/CSQA/) partially for few-shot training and validation.
+## Prepare training data for a domain of your choice. 
 
-Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account). Each domain only has 5 slots maximum, so act quickly to secure the one you want to try. Edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
+The input to the semantic parser is a natural language utterance, and the output is a formal representation of the sentence in the ThingTalk language.  Thus, the training data set consists of pairs of natural language utterance and its corresponding Thingtalk representation.  
+The [CSQA dataset](https://amritasaha1812.github.io/CSQA/) is a released dataset of questions and answers on Wikidata. We use this dataset in two ways:
+(1) Add a small number of questions from the CSQA dataset (and their ThingTalk representation as training data.  This complements the synthesized dataset.  We refer to this small data addition as "few-shot" training data.
+(2) We do not use synthesized data for validation (or known as dev) and test (also known as eval). We also create a dev set and an eval set from the CSQA dataset. 
+
+### Pick a domain
+
+Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account). Each domain only has 5 slots maximum, so act quickly to secure the one you want to try. 
+
+Edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
 ```make
 experiment ?= <YOUR_DOMAIN>
 ```
 Make sure the domain name is in **lower-case**. 
 
-After setting up the domain, run the following command to synthesize data:
+### Get the domain data and generate training data
+
+The following command automatically copies over the data for the domain and synthesize the data:
 ```bash
 make datadir 
 ```
-The synthesis will take about 1 hour, depending on the domain. 
+The step will take about 1 hour, depending on the domain. 
 
-It will generate:
-- the manifest, `<DOMAIN>/manifest.tt`, containing the schema of the domain, including entities involved, all properties, and their natural language annotations; 
-- a parameter dataset for augmentation, under `<DOMAIN>/parameter-dataset`; 
-- a dataset in `datadir`, containing the training set composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets; and a valid/eval set, converted from CSQA dev set.
+It will create:
+- the manifest, `<DOMAIN>/manifest.tt`. This contains the schema of the domain, including entities involved, all properties, and their natural language annotations; 
+- a parameter dataset for augmentation, in `<DOMAIN>/parameter-dataset`. This contains information that will augment the automatically synthesized data with more entity data (e.g. names of people, countries, etc.)
+- a dataset in `datadir`. This training data set (`datadir/train.tsv`) is composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets. In addition, there is a validation set (`datadir/valid.tsv`) and a test set, converted from CSQA dev set. 
 
-Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold Thingtalk program, respectively.
-Check the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like.
+Please take a look at the data prepared for you.  
 
-For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations) guide.
+The `manifest.tt` file contains the set of properties in your domain. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check the [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations) guide.
+
+Check out the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like. You should not look at the test set, because you are not allowed to tune the training data or the model based on knowledge in the test set. 
+
+Each line in the data files is a training sample, consisting of the ID of the sample, the lowercased natural language utterance, and the gold Thingtalk program.
 
 **If you want to re-run this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files that already exist.**
 
 ## Train a semantic parser 
-With the data prepared, we can now start training using the following command
+We can now start training using the following command
 ```bash
 make train
 ```
@@ -115,9 +122,9 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 ```
 
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
-Note that the model can only answer questions with properties in scope. Refer to the evaluation dataset or the manifest for what are the available properties.
+Note that the model can only answer questions on the properties in the domain. Refer to the evaluation dataset or the manifest for the available properties.
 
-Hint: despite decent accuracy reported on artificial evaluation set, the agent is very likely to perform poorly. 
+Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly. 
 
 ## Submission
 Each student should submit a pdf file and include the following: 
