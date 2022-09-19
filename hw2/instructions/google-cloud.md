@@ -134,7 +134,7 @@ More instructions at [General quota instructions](https://cloud.google.com/compu
 
 ### Customize VM Hardware 
 
-We will use *Deep Learning VM* from GCP's marketplace. This will create a VM with CUDA and Pytorch installed and configured to work on GPUs. The operating system will be Debian 9. You should go through the following steps to create the instance. 
+We will use *Deep Learning VM* from GCP's marketplace. This will create a VM with CUDA and Pytorch installed and configured to work on GPUs. The operating system will be Debian 10. You should go through the following steps to create the instance. 
 
 1. Go to [this Google Cloud Marketplace page](https://console.cloud.google.com/marketplace/config/click-to-deploy-images/tensorflow). You may be taken to a page where you have to click on *Launch*, and then you should see a configuration sheet titled *New Deep Learning VM deployment*.
 1. Fill in `Deployment name` field with your preferred VM name.
@@ -142,7 +142,7 @@ We will use *Deep Learning VM* from GCP's marketplace. This will create a VM wit
 3. Under `Machine type`, choose `GPU` as the `Machine family`.
 4. For `GPU type`, we recommend `NVIDIA Tesla V100`. It should cost around $2 per hour. P100 (cheaper and slight weaker) and A100 (more expensive, more powerful) also work. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
 5. For `Machine type`, we recommend `n1-standard-8` which has 8 vCPUs and 30 GB memory.
-6. In `Frameworks` field, change to `PyTorch 1.9 (CUDA 11.0)`.
+6. In `Frameworks` field, change to `PyTorch 1.11 (CUDA 11.3)`.
 7. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
 8. Leave all other options as default. You can change `Boot disk type` to `SSD Persistent Disk`, but this should not affect the performance.
 9.  Click the blue botton `Deploy` at the end of the page. **This will automatically Start your Instance**, so if you do not need to use it now, **stop it immediately** after it is created.
