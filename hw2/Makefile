@@ -5,7 +5,7 @@ csqa_dir ?= raw/csqa
 memsize := 12000
 genie = node --experimental_worker --max_old_space_size=$(memsize) $(geniedir)/dist/tool/genie.js
 
-experiment ?= 
+experiment ?= <YOUR_DOMAIN>
 
 # options for manfiest generation
 annotation ?= auto
@@ -139,7 +139,7 @@ domains.tsv: raw/csqa/valid $(wikidata_dir)
 
 $(experiment)/parameter-datasets.tsv: $(wikidata_dir) domains.tsv bootleg-types.json
 	mkdir -p $(experiment)/parameter-datasets
-	$(genie) wikidata-preprocess-data \
+	$(genie) wikidata-preprocess-knowledge-base \
 	  --domains domains.tsv \
 	  --wikidata $(wikidata_dir)/wikidata_short_1.json $(wikidata_dir)/wikidata_short_2.json \
 	  --wikidata-entity-list $(wikidata_dir)/items_wikidata_n.json \

@@ -21,7 +21,8 @@ Adopted from [CS231N's tutorial](https://github.com/cs231n/gcloud) and [CS294S/W
     - [Install gcloud command-line Tools](#install-gcloud-command-line-tools)
     - [Alternatives to the `gcloud` command](#alternatives-to-the-gcloud-command)
   - [Remote Server Development](#remote-server-development)
-    - [Transferring Files From Your Instance To Your Computer](#transferring-files-from-your-instance-to-your-computer)
+    - [Transferring Files from Your Instance To Your Computer](#transferring-files-from-your-instance-to-your-computer)
+    - [Mount Remote Server Folder To Your Local Machine](#mount-remote-server-folder-to-your-local-machine)
     - [Other Tips](#other-tips)
   - [IMPORTANT REMINDER: Make sure you stop your instances!](#important-reminder-make-sure-you-stop-your-instances)
     
@@ -207,6 +208,20 @@ gcloud compute scp /my/local/file tonystark@hw2-vm:/home/shared/
 If you would like to transfer an entire folder, you will need to add a resursive flag: 
 ```
 gcloud compute scp --recurse /my/local/folder tonystark@hw2-vm:/home/shared/
+```
+
+### Mount Remote Server Folder To Your Local Machine
+
+You can use SSHFS to mount a remote server folder to your local machine. Run this command from your laptop:
+
+```
+sshfs -o IdentityFile=~/.ssh/google_compute_engine <user>@<external-ip>:<path/to/folder/on/remote/server> <path/to/folder/on/local/machine>
+```
+
+To unmount, run this command from your laptop:
+
+```
+umount -f <path/to/folder/on/local/machine>
 ```
 
 ### Other Tips
