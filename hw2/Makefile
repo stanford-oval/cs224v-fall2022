@@ -175,7 +175,6 @@ $(experiment)/manifest.tt: $(experiment)/constants.tsv $(experiment)/wikidata.tt
 	  --constants $(experiment)/constants.tsv \
 	  --thingpedia $(experiment)/wikidata.tt \
 	  --entities ${experiment}/entities.json \
-	  --parameter-datasets $(experiment)/parameter-datasets.tsv \
 	  --dataset wikidata \
 	  $(annotate_flags) 
 	mv $@.tmp $@
@@ -300,7 +299,7 @@ evaluate: $(experiment)/models/${model}/best.pth $(experiment)/$(eval_set)/annot
 	  --min-complexity 1 \
 	  --max-complexity 3 \
 	  --ignore-entity-type \
-	  $(if $(annotate_with_entity_id),--entity-id,--no-entity-id) \
+	  $(if $(annotate_with_entity_id),--entity-id) \
 	  -o $(experiment)/$(eval_set)/$(model).results.tmp | tee $(experiment)/$(eval_set)/$(model).debug
 	mv $(experiment)/$(eval_set)/$(model).results.tmp $(experiment)/$(eval_set)/$(model).results
 

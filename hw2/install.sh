@@ -124,3 +124,6 @@ pip install --upgrade pip
 echo $(which python)
 pip install genienlp tensorboard spacy 
 python -m spacy download en_core_web_sm
+pip install pathos==0.2.9
+pip install pydantic==1.8
+pip install 'ray[serve]==1.6.0'

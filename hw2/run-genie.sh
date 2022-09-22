@@ -7,6 +7,7 @@ set -o pipefail
 parse_args "$0" "domain" "$@"
 
 set -x
+mkdir -p devices/org.wikidata
 
 if ! test -h ./devices/org.wikidata/manifest.tt ; then
 	ln -s "${PWD}/${domain}/manifest.tt" ./devices/org.wikidata/manifest.tt
