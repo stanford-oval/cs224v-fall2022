@@ -57,6 +57,7 @@ Make sure the domain name is in **lower-case**.
 
 The following command automatically copies over the data for the domain and synthesize the data:
 ```bash
+source .virtualenv/genie/bin/activate
 make datadir 
 ```
 The step will take about 1 hour, depending on the domain. 
@@ -79,7 +80,6 @@ Each line in the data files is a training sample, consisting of the ID of the sa
 ## Train a semantic parser 
 We can now start training using the following command
 ```bash
-source .virtualenv/genie/bin/activate
 make train
 ```
 This takes about 1 hour with V100/P100 GPU or 4 hours with K80.
