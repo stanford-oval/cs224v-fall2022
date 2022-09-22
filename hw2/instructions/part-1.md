@@ -79,6 +79,7 @@ Each line in the data files is a training sample, consisting of the ID of the sa
 ## Train a semantic parser 
 We can now start training using the following command
 ```bash
+source .virtualenv/genie/bin/activate
 make train
 ```
 This takes about 1 hour with V100/P100 GPU or 4 hours with K80.
