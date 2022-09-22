@@ -140,7 +140,7 @@ We will use *Deep Learning VM* from GCP's marketplace. This will create a VM wit
 1. Fill in `Deployment name` field with your preferred VM name.
 2. In `Zone`, we recommend `europe-west4-*` because the GPU availability in US servers (e.g., `us-west1-b`, `us-central1-a`) has not been great when we test it. In practice, any server that provides V100/P100/A100 GPU would work, the only difference would be [latency](https://gcping.com/).
 3. Under `Machine type`, choose `GPU` as the `Machine family`.
-4. For `GPU type`, we recommend `NVIDIA Tesla V100`. It should cost around $2 per hour. P100 (cheaper and slight weaker) and A100 (more expensive, more powerful) also work. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
+4. For `GPU type`, we recommend `NVIDIA V100`. It should cost around $2 per hour. P100 (cheaper and slight weaker) and A100 (more expensive, more powerful) also work. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
 5. For `Machine type`, we recommend `n1-standard-8` which has 8 vCPUs and 30 GB memory.
 6. In `Frameworks` field, change to `PyTorch 1.11 (CUDA 11.3)`.
 7. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
