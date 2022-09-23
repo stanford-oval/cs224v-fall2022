@@ -102,18 +102,18 @@ You can add more annotated data to your training and evaluation datasets by:
 3. Editing the Thingtalk code if there is a mistake and saving the file
 4. Copying the lines starting with `U:` (natural language utterance) and `UT:` (Thingtalk code) 
     <center><img src="img/genie-ui-copy-paste-screen.png" width="600"></center>
-5. Pasting and formatting the code in your training set (`datadir/train.tsv`) and/or dev set (`datadir/valid.tsv`). For example:
+5. Pasting and formatting the code to follow the same format as in your training set (`datadir/train.tsv`) and/or dev set (`datadir/valid.tsv`). It should be one example per line where items in each example are delimited by a tab.
+
     ```text
-    ====
-    # manual/001
-    U: what's the weather today in Palo Alto?
-    UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
-    UT: @org.thingpedia.weather.current(location=new Location("palo alto"));
-    ====
-    # manual/002
-    U: what's the weather today in San Jose?
-    UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
-    UT: @org.thingpedia.weather.current(location=new Location("san jose"));
+    #ID {Natrual language command (values from U:)}   {Thingtalk code (values from UT:)}
+    #ID {Natrual language command (values from U:)}   {Thingtalk code (values from UT:)}
+    ...
+    ```
+
+    For example:
+    ```text
+    manual/001	what's the weather today in Palo Alto?	$dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("palo alto"));
+    manual/002  what's the weather today in San Jose?   $dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
 
 ## Submission
