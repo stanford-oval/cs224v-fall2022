@@ -1,6 +1,6 @@
 # Build a QA skill for a Wikidata domain with Genie
 
-This part of the homework is brings up the system by running a few automated scripts.
+This part of the homework brings up the system by running a few automated scripts.
 
 ## Table of contents
 
@@ -40,7 +40,7 @@ Since both the synthesis and training take a long time to finish, we **highly re
 
 The input to the semantic parser is a natural language utterance, and the output is a formal representation of the sentence in the ThingTalk language.  Thus, the training data set consists of pairs of natural language utterance and its corresponding Thingtalk representation.  
 The [CSQA dataset](https://amritasaha1812.github.io/CSQA/) is a released dataset of questions and answers on Wikidata. We use this dataset in two ways:
-(1) Add a small number of questions from the CSQA dataset (and their ThingTalk representation as training data.  This complements the synthesized dataset.  We refer to this small data addition as "few-shot" training data.
+(1) Add a small number of questions from the CSQA dataset (and their ThingTalk representation as training data).  This complements the synthesized dataset.  We refer to this small data addition as "few-shot" training data.
 (2) We do not use synthesized data for validation (or known as dev) and test (also known as eval). We also create a dev set and an eval set from the CSQA dataset. 
 
 ### Pick a domain
@@ -55,7 +55,7 @@ Make sure the domain name is in **lower-case**.
 
 ### Get the domain data and generate training data
 
-The following command automatically copies over the data for the domain and synthesize the data:
+The following command automatically copies over the data for the domain and synthesizes the data:
 ```bash
 source .virtualenv/genie/bin/activate
 make datadir 
