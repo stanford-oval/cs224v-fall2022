@@ -63,11 +63,11 @@ make datadir
 The step will take about 1 hour, depending on the domain. 
 
 It will create:
-- the manifest, `<DOMAIN>/manifest.tt`. This contains the schema of the domain, including entities involved, all properties, and their natural language annotations; 
+- the manifest, `<DOMAIN>/manifest.tt`. This contains the schema of the domain, including entities involved, all properties, and their natural language annotations. *(Side note: If you are using VS Code, we have developed a simple [syntax highlighter](https://marketplace.visualstudio.com/items?itemName=ShichengLiu.thingtalk-syntax-highlighter) for `.tt` files. You can install it directly from Marketplace. If you have suggestions about what additional functionalities you'd find useful, feel free to create feature requests on its GitHub page.)*; 
 - a parameter dataset for augmentation, in `<DOMAIN>/parameter-dataset`. This contains information that will augment the automatically synthesized data with more entity data (e.g. names of people, countries, etc.)
 - a dataset in `datadir`. This training data set (`datadir/train.tsv`) is composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets. In addition, there is a validation set (`datadir/valid.tsv`) and a test set, converted from CSQA dev set. 
 
-Please take a look at the data prepared for you.  
+Please take a look at the data prepared for you. The Genie system uses the first two files (manifest and parameter dataset) for data synthesis.
 
 The `manifest.tt` file contains the set of properties in your domain. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in different parts of speech. For more details about the annotation syntax, check out the [Genie Annotation Reference](https://wiki.almond.stanford.edu/en/references/genie-annotation) guide.
 
@@ -125,7 +125,7 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
 Note that the model can only answer questions on the properties in the domain. Refer to the evaluation dataset or the manifest for the available properties.
 
-Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly. 
+Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly in real world. We will be exploring more on this in part 2.
 
 ## Submission
 Each student should submit a pdf file and include the following: 
