@@ -36,4 +36,4 @@ fi
 
 export THINGENGINE_HOME=./.home
 [ "${nlp_server}" = "local" ] && export THINGENGINE_NLP_URL=http://127.0.0.1:8400
-exec node ./almond-server/dist/main.js
+exec node ./genie-server/dist/main.js
