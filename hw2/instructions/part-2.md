@@ -37,7 +37,7 @@ A reference guide for the annotation syntax can be found [here](https://wiki.gen
 To ensure that your annotations are written properly, you can see how your annotations are used in synthesis by running the following on your updated manifest file:
 ```bash
 touch ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/constants.tsv
-genie sample-synthetic-data --output ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/samples.tsv --thingpedia ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/manifest.tt --constants ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/constants.tsv --device $YOUR_DOMAIN
+genie sample-synthetic-data --output ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/samples.tsv --thingpedia ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/manifest.tt --constants ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/constants.tsv --device org.wikidata
 ```
 Parameters:
 ```bash
