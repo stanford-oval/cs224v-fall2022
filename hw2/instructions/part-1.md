@@ -17,7 +17,7 @@ This part of the homework brings up the system by running a few automated script
 
 ### Google Cloud Platform
 
-This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
+This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students have received a Google Cloud Platform coupon for this class. [Here](https://gcp.secure.force.com/GCPEDU?cid=Uyi9ze1O1S9sSxN1TfeSwKoLrjxc13s%2FZJmVEQdY7EqdCDahnnfFYTorB21fOL6L/) is the URL you will need to access in order to request a Google Cloud coupon. You will be asked to provide your school email address and name. An email will be sent to you to confirm these details before a coupon is sent to you.
 
 Once you have redeemed your coupon, **follow this [instruction](./google-cloud.md) to setup your VM.**
 
