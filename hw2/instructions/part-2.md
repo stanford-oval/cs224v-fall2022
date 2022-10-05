@@ -15,16 +15,6 @@ In this homework, we will add a little manual effort in the form of property ann
 - [Add more training & evaluation data](#add-more-training--evaluation-data)
 - [Submission](#submission)
 
-## Setup
-** Do we need this section? -Monica **
-We will continue running all the experiments under directory `hw2`. Run the following on your GCP instance to get the latest update of this repo:
-```bash
-cd cs224v-fall2022
-git stash # following the prompt to configure git if needed
-git pull
-git stash pop
-```
-
 ## Edit the annotations in the manifest
 
 The automatically generated annotations are apparently not perfect, especially because the name of each property in Wikidata is often clunky and unnatural. Now we are going to manually update them. 
