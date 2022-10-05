@@ -132,4 +132,3 @@ Each student should submit a pdf file and include the following:
 - The domain you chose
 - The accuracy of your model (from `./<DOMAIN>/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
 - At least five commands you've tried with their genie server log (copy from the tab running `run-genie.sh`). 
-
