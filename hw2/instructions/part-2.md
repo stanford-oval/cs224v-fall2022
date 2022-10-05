@@ -105,7 +105,10 @@ You can add more annotated data to your training and evaluation datasets by:
     manual/001	what's the weather today in Palo Alto?	$dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("palo alto"));
     manual/002	what's the weather today in San Jose?	$dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("san jose"));
     ```
-6. Run `make train_augmented model=3` to train the model on the new augmented `train.tsv`
+6. Run the following command to train the model on the new augmented `train.tsv`
+    ```bash
+    make train_augmented model=3
+    ```
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
