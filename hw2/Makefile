@@ -5,7 +5,7 @@ csqa_dir ?= raw/csqa
 memsize := 12000
 genie = node --experimental_worker --max_old_space_size=$(memsize) $(geniedir)/dist/tool/genie.js
 
-experiment ?= <YOUR_DOMAIN>
+experiment ?= music_band
 
 # options for manfiest generation
 annotation ?= auto
@@ -270,6 +270,26 @@ datadir: domains.tsv $(experiment)/augmented.tsv $(experiment)/$(valid_set)/anno
 	touch $@
 
 train: $(datadir)
+	mkdir -p $(experiment)/models/$(model)
+	-rm datadir/almond
+	ln -sf . datadir/almond
+	genienlp train \
+	  --data $(datadir) \
+	  --save $(experiment)/models/$(model) \
+	  --cache $(datadir)/.cache \
+	  --tensorboard_dir $(experiment)/models/$(model) \
+	  --train_tasks almond \
+	  --train_iterations $(train_iterations) \
+	  --save_every $(train_save_every) \
+	  --log_every $(train_log_every) \
+	  --val_every $(train_save_every) \
+	  --exist_ok \
+	  --skip_cache \
+	  --preserve_case \
+	  $(train_nlu_flags) \
+	  $(custom_train_nlu_flags)
+
+train_augmented:
 	mkdir -p $(experiment)/models/$(model)
 	-rm datadir/almond
 	ln -sf . datadir/almond
