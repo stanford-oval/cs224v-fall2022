@@ -34,9 +34,10 @@ gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>":~/cs224v-fall2022/hw2/<"YOUR_D
 
 A reference guide for the annotation syntax can be found [here](https://wiki.genie.stanford.edu/en/attic/genie/annotations). Only "Function Canonical Form" and "Parameter Canonical Form" sections are needed for the homework. 
 
-For example, one possible edit for domain `city` can be the following (with only one addition):
+For example, one possible edit for domain `city` can be the following (with only one addition).
+
+Original annotation:
 ```
-Original
 #[wikidata_id="P190"],
 out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
 #_[canonical={
@@ -44,8 +45,10 @@ out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
     base=["shares border with"],
     base_projection=["shares border with", "administrative territorial entity", "sovereign state",$
 }]
+```
 
-Modified
+Modified annotation:
+```
 #[wikidata_id="P190"],
 out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
 #_[canonical={
@@ -53,7 +56,6 @@ out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
     base=["shares border with"],
     base_projection=["shares border with", "administrative territorial entity", "sovereign state", "neighbours",$
 }]
-
 ```
 
 To ensure that your annotations are written properly, you can see how your annotations are used in synthesis by running the following on your updated manifest file:
