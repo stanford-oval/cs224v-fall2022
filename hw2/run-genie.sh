@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 . ./lib.sh
-parse_args "$0" "domain" "$@"
+parse_args "$0" "domain nlp_server" "$@"
 
 set -x
 mkdir -p devices/org.wikidata
