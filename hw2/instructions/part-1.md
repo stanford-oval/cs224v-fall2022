@@ -1,6 +1,6 @@
 # Build a QA skill for a Wikidata domain with Genie
 
-This part of the homework is brings up the system by running a few automated scripts.
+This part of the homework brings up the system by running a few automated scripts.
 
 ## Table of contents
 
@@ -17,7 +17,7 @@ This part of the homework is brings up the system by running a few automated scr
 
 ### Google Cloud Platform
 
-This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
+This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students have received a Google Cloud Platform coupon for this class. [Here](https://gcp.secure.force.com/GCPEDU?cid=Uyi9ze1O1S9sSxN1TfeSwKoLrjxc13s%2FZJmVEQdY7EqdCDahnnfFYTorB21fOL6L/) is the URL you will need to access in order to request a Google Cloud coupon. You will be asked to provide your school email address and name. An email will be sent to you to confirm these details before a coupon is sent to you.
 
 Once you have redeemed your coupon, **follow this [instruction](./google-cloud.md) to setup your VM.**
 
@@ -40,7 +40,7 @@ Since both the synthesis and training take a long time to finish, we **highly re
 
 The input to the semantic parser is a natural language utterance, and the output is a formal representation of the sentence in the ThingTalk language.  Thus, the training data set consists of pairs of natural language utterance and its corresponding Thingtalk representation.  
 The [CSQA dataset](https://amritasaha1812.github.io/CSQA/) is a released dataset of questions and answers on Wikidata. We use this dataset in two ways:
-(1) Add a small number of questions from the CSQA dataset (and their ThingTalk representation as training data.  This complements the synthesized dataset.  We refer to this small data addition as "few-shot" training data.
+(1) Add a small number of questions from the CSQA dataset (and their ThingTalk representation) as training data.  This complements the synthesized dataset.  We refer to this small data addition as "few-shot" training data.
 (2) We do not use synthesized data for validation (or known as dev) and test (also known as eval). We also create a dev set and an eval set from the CSQA dataset. 
 
 ### Pick a domain
@@ -55,7 +55,7 @@ Make sure the domain name is in **lower-case**.
 
 ### Get the domain data and generate training data
 
-The following command automatically copies over the data for the domain and synthesize the data:
+The following command automatically copies over the data for the domain and synthesizes the data:
 ```bash
 source .virtualenv/genie/bin/activate
 make datadir 
@@ -63,11 +63,11 @@ make datadir
 The step will take about 1 hour, depending on the domain. 
 
 It will create:
-- the manifest, `<DOMAIN>/manifest.tt`. This contains the schema of the domain, including entities involved, all properties, and their natural language annotations; 
+- the manifest, `<DOMAIN>/manifest.tt`. This contains the schema of the domain, including entities involved, all properties, and their natural language annotations. *(Side note: If you are using VS Code, we have developed a simple [syntax highlighter](https://marketplace.visualstudio.com/items?itemName=ShichengLiu.thingtalk-syntax-highlighter) for `.tt` files. You can install it directly from Marketplace. If you have suggestions about what additional functionalities you'd find useful, feel free to create feature requests on its GitHub page.)*; 
 - a parameter dataset for augmentation, in `<DOMAIN>/parameter-dataset`. This contains information that will augment the automatically synthesized data with more entity data (e.g. names of people, countries, etc.)
 - a dataset in `datadir`. This training data set (`datadir/train.tsv`) is composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets. In addition, there is a validation set (`datadir/valid.tsv`) and a test set, converted from CSQA dev set. 
 
-Please take a look at the data prepared for you.  
+Please take a look at the data prepared for you. The Genie system uses the first two files (manifest and parameter dataset) for data synthesis.
 
 The `manifest.tt` file contains the set of properties in your domain. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in different parts of speech. For more details about the annotation syntax, check out the [Genie Annotation Reference](https://wiki.almond.stanford.edu/en/references/genie-annotation) guide.
 
@@ -125,11 +125,10 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
 Note that the model can only answer questions on the properties in the domain. Refer to the evaluation dataset or the manifest for the available properties.
 
-Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly. 
+Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly in real world. We will be exploring more on this in part 2.
 
 ## Submission
 Each student should submit a pdf file and include the following: 
 - The domain you chose
 - The accuracy of your model (from `./<DOMAIN>/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
 - At least five commands you've tried with their genie server log (copy from the tab running `run-genie.sh`). 
-

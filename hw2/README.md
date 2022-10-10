@@ -1,4 +1,4 @@
-# CS 224V Fall 2021 Homework 2:
+# CS 224V Fall 2022 Homework 2:
 # A Question-Answering Skill with a Neural Semantic Parser
 # Due: Wednesday, Oct 12, 2022 (11:59 PM)
 

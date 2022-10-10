@@ -34,6 +34,30 @@ gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>":~/cs224v-fall2022/hw2/<"YOUR_D
 
 A reference guide for the annotation syntax can be found [here](https://wiki.genie.stanford.edu/en/attic/genie/annotations). Only "Function Canonical Form" and "Parameter Canonical Form" sections are needed for the homework. 
 
+For example, one possible edit for domain `city` can be the following (with only one addition).
+
+Original annotation:
+```
+#[wikidata_id="P190"],
+out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
+#_[canonical={
+    default="property",
+    base=["shares border with"],
+    base_projection=["shares border with", "administrative territorial entity", "sovereign state",$
+}]
+```
+
+Modified annotation:
+```
+#[wikidata_id="P190"],
+out shares_border_with : Array(Entity(org.wikidata:p_shares_border_with))
+#_[canonical={
+    default="property",
+    base=["shares border with"],
+    base_projection=["shares border with", "administrative territorial entity", "sovereign state", "neighbours",$
+}]
+```
+
 To ensure that your annotations are written properly, you can see how your annotations are used in synthesis by running the following on your updated manifest file:
 ```bash
 touch ~/cs224v-fall2022/hw2/<"YOUR_DOMAIN">/constants.tsv
@@ -103,7 +127,11 @@ You can add more annotated data to your training and evaluation datasets by:
     For example:
     ```text
     manual/001	what's the weather today in Palo Alto?	$dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("palo alto"));
-    manual/002  what's the weather today in San Jose?   $dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("san jose"));
+    manual/002	what's the weather today in San Jose?	$dialogue @org.thingpedia.dialogue.transaction.execute; @org.thingpedia.weather.current(location=new Location("san jose"));
+    ```
+6. Run the following command to train the model on the new augmented `train.tsv`
+    ```bash
+    make train_augmented model=3
     ```
 
 ## Submission
