@@ -113,7 +113,7 @@ Run the following command to start a server that will continuously run the train
 
 Then in a separate tab/session, run:
 ```bash
-./run-genie.sh --domain <DOMAIN>
+./run-genie.sh --domain <DOMAIN> --nlp_server local
 ```
 
 This will start a web Genie assistant at port 3000. Similar to tensorboard, you can port forward it
