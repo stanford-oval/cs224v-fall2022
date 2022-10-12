@@ -101,34 +101,11 @@ After the evaluation finishes, you will have two files:
 
 See [instructions/eval-metrics.md](./eval-metrics.md) for details of these files.
 
-Note: to reduce cost and time, we generate a relatively small dataset (10K~20K examples) in this homework and train for only 10K iterations. In practice, we can synthesize a much larger dataset and train for more iterations, which will give us a few percent of improvement on accuracy. 
+Note: To reduce cost and time, we generate a relatively small dataset (10K~20K examples) in this homework and train for only 10K iterations. In practice, we can synthesize a much larger dataset and train for more iterations, which will give us a few percent of improvement on accuracy.
 
-## Talk to your model
-Now it's time to test your model for real. You will start a web interface to talk to your model directly. 
-
-Run the following command to start a server that will continuously run the trained model in inference mode:
-```bash
-./run-nlu-server.sh --domain <DOMAIN> --nlu_model 1
-```
-
-Then in a separate tab/session, run:
-```bash
-./run-genie.sh --domain <DOMAIN> --nlp_server local
-```
-
-This will start a web Genie assistant at port 3000. Similar to tensorboard, you can port forward it
-by running the following command on your local PC:
-```bash
-gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
-```
-
-You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
-Note that the model can only answer questions on the properties in the domain. Refer to the evaluation dataset or the manifest for the available properties.
-
-Hint: despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly in real world. We will be exploring more on this in part 2.
+Note: Despite decent accuracy reported on artificial validation set, the agent is very likely to perform poorly in real world. We will be exploring more on this in part 2.
 
 ## Submission
 Each student should submit a pdf file and include the following: 
 - The domain you chose
 - The accuracy of your model (from `./<DOMAIN>/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
-- At least five commands you've tried with their genie server log (copy from the tab running `run-genie.sh`). 
