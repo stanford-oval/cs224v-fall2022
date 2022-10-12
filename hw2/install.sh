@@ -10,9 +10,7 @@ install_node() {
 		wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 		\. $HOME/.nvm/nvm.sh --no-use
 	fi
-	echo "Midway install_node()"
-	nvm install 14.18	
-	echo "Completed install_node()"
+	nvm install 14.18
 }
 
 install_deps_dnf() {
@@ -32,16 +30,16 @@ install_deps_debian() {
 	echo "About to install git, make, gettext, curl"
 	sudo apt -y install git make gettext g++ curl libpulse-dev python3-pip python3-distutils apt-transport-https bc
 
-        echo "About to install python3.8 (from source)"
-        sudo apt update
-        sudo apt -y install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev liblzma-dev
-        curl -O https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz
-        tar -xf Python-3.8.2.tar.xz
-        cd Python-3.8.2
-        ./configure --enable-optimizations --enable-loadable-sqlite-extensions
-        make -j 8
-        sudo make altinstall
-        cd ..
+	echo "About to install python3.8 (from source)"
+	sudo apt update
+	sudo apt -y install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev liblzma-dev
+	curl -O https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz
+	tar -xf Python-3.8.2.tar.xz
+	cd Python-3.8.2
+	./configure --enable-optimizations --enable-loadable-sqlite-extensions
+	make -j 8
+	sudo make altinstall
+	cd ..
 }
 
 install_deps() {
@@ -55,7 +53,6 @@ install_deps() {
 		echo "Cannot detect the running distro. Please install dependencies using your package manager."
 		exit 1
 	fi
-	echo "Completed install_deps()"
 }
 
 check_deps() {
@@ -64,7 +61,6 @@ check_deps() {
 			return 1
 		fi
 	done
-	echo "Completed check_deps()"
 	return 0
 }
 
@@ -95,7 +91,6 @@ fi
 install_node
 
 if ! test -d genie-toolkit ; then
-	echo "Here genie-toolkit"
 	git clone https://github.com/stanford-oval/genie-toolkit
 	pushd genie-toolkit > /dev/null
 	npm ci

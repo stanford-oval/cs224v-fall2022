@@ -5,7 +5,7 @@ csqa_dir ?= raw/csqa
 memsize := 12000
 genie = node --experimental_worker --max_old_space_size=$(memsize) $(geniedir)/dist/tool/genie.js
 
-experiment ?= music_band
+experiment ?= <YOUR_DOMAIN>
 
 # options for manfiest generation
 annotation ?= auto
