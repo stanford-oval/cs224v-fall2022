@@ -10,7 +10,6 @@ This part of the homework brings up the system by running a few automated script
 - [Data synthesis](#data-synthesis)
 - [Train a semantic parser](#train-a-semantic-parser)
 - [Evaluate the semantic parser](#evaluate-the-semantic-parser)
-- [Talk to your model](#talk-to-your-model)
 - [Submission](#submission)
 
 ## Setup
