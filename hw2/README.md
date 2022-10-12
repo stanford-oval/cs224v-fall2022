@@ -26,4 +26,4 @@ There are two parts to this homework.
 Set up the environment and create a basic QA skill for a Wikidata domain with Genie
 
 ## [Part 2](./instructions/part-2.md)
-Improve your Wikidata skill by adding a few annotations and a few samples of training data
+Improve your Wikidata skill by adding a few annotations
