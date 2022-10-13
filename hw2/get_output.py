@@ -14,5 +14,8 @@ if __name__ == "__main__":
     for query in lines:
         json_data = {'q': query}
         response = requests.post('http://127.0.0.1:8400/en-US/query', json=json_data)
-        thingtalk = ' '.join(response.json()['candidates'][0]['code'])
+        if len(response.json()['candidates']) > 0:
+            thingtalk = ' '.join(response.json()['candidates'][0]['code'])
+        else:
+            thingtalk = 'MODEL FAILED TO GENERATE OUTPUT'
         print('-'*25, f'\nQuery: {query}\nThingTalk Code: {thingtalk}')
