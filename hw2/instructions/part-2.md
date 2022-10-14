@@ -91,7 +91,7 @@ By default the model name is set to `1`. **Do not** run `make train` without ove
 ## Evaluate 
 Similar to part 1. Run the following command with model `2` to evaluate the new model.
 ```bash
-make evaluate
+make evaluate model=2
 ```
 
 After the evaluation finishes, you will now have `./<DOMAIN>/eval/2.results` and `./<DOMAIN>/eval/2.debug`.
